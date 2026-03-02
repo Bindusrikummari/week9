@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Functions with Buttons</title>
+    <script>
+
+        function factorial(n) {
+            let fact = 1;
+            for (let i = 1; i <= n; i++) {
+                fact *= i;
+            }
+            return fact;
+        }
+
+        function fibonacci(n) {
+            let a = 0, b = 1;
+            let result = "";
+            while (a <= n) {
+                result += a + " ";
+                let temp = a + b;
+                a = b;
+                b = temp;
+            }
+            return result;
+        }
+
+        function primes(n) {
+            let result = "";
+            for (let i = 2; i <= n; i++) {
+                let isPrime = true;
+                for (let j = 2; j <= Math.sqrt(i); j++) {
+                    if (i % j === 0) {
+                        isPrime = false;
+                        break;
+                    }
+                }
+                if (isPrime) result += i + " ";
+            }
+            return result;
+        }
+
+        function palindrome(n) {
+            let str = n.toString();
+            let rev = str.split("").reverse().join("");
+            return str === rev;
+        }
+
+        function calculate(type) {
+            let num = parseInt(document.getElementById("num").value);
+            let result = "";
+
+            switch(type) {
+                case "fact":
+                    result = "Factorial: " + factorial(num);
+                    break;
+                case "fib":
+                    result = "Fibonacci Series: " + fibonacci(num);
+                    break;
+                case "prime":
+                    result = "Prime Numbers: " + primes(num);
+                    break;
+                case "pal":
+                    result = palindrome(num) ? "Palindrome" : "Not Palindrome";
+                    break;
+            }
+
+            document.getElementById("result").innerHTML = result;
+        }
+
+    </script>
+</head>
+<body>
+
+<h2>Functions using Buttons</h2>
+
+Enter Number: <input type="text" id="num"><br><br>
+
+<button onclick="calculate('fact')">Factorial</button>
+<button onclick="calculate('fib')">Fibonacci</button>
+<button onclick="calculate('prime')">Prime</button>
+<button onclick="calculate('pal')">Palindrome</button>
+
+<p id="result"></p>
+
+</body>
+</html>
